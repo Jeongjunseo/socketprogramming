@@ -60,7 +60,6 @@ FILE* open_cookie(char *hostname, char *port, char *option) {
         sprintf(full_path, "cookies/%s:%s", hostname, port);
         FILE *fp = fopen(full_path, option);
         if (!fp) {
-                printf("no cookie\n");
                 return NULL;
         }
         return fp;

@@ -162,10 +162,8 @@ void serve_resource(struct client_info *client, const char *path, const char* co
 	char full_path[128];
 	
 	sprintf(full_path, "cookies/%s", path);
-	printf("%s\n", full_path);
 	FILE *fp = fopen(full_path, "rt");
 	if (fp == NULL) {
-		printf("there is no file");
 		send_404(client); return; 
 	}
 	fseek(fp, 0L, SEEK_END);
@@ -266,13 +264,11 @@ int main() {
 								if(!end_cookie) { send_400(client); }
 								else {
 									*end_cookie = 0;
-									printf("Cookie: %s\n", cookie);
 									serve_resource(client, cookie, 0);	
 								}
 
 							} else{ //Without cookie
 								printf("%s", client->request);
-								printf("There is no cookie\n");
 								//cookie value
 								char cookieid[8];
 								sprintf(cookieid, "%d", cookies++); //cookie(toString)
@@ -294,7 +290,6 @@ int main() {
 							
 							//print body
 							char* bodystart = strstr(client->request, "\r\n\r\n");
-							if (bodystart) printf("There is body\n");
 							bodystart += 4;
 							char* bodyend = bodystart + contentlength;
 						        *bodyend = 0;
@@ -318,7 +313,6 @@ int main() {
 								}
 							} else { //Without Cookie
 								printf("%s", client->request);
-								printf("There is no cookie\n");
 								//cookie value
 								char cookieid[8];
 								sprintf(cookieid, "%d", cookies++); //cookie(toString)
