@@ -328,7 +328,6 @@ int main() {
 									printf("made cookiefile\n");
 									fclose(fp);
 								}
-								serve_resource(client, cookieid, cookieid);
 								
 								//put body data in cookie file
 								fp = open_cookie(cookieid, "a");
@@ -338,6 +337,8 @@ int main() {
 									printf("cooke write file fail");
 								}
 								fclose(fp);
+
+								serve_resource(client, cookieid, cookieid);
 							}
 							       	
 						}
